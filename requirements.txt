@@ -1,0 +1,11 @@
+Django
+djangorestframework
+psycopg2-binary
+pillow
+gunicorn
+django-heroku
+asgi-redis
+daphne
+celery
+channels
+redis
