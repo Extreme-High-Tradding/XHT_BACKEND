@@ -74,21 +74,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'xht_project.wsgi.application'
 
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND”: “asgi_redis.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [os.environ.get(‘REDIS_URL’, ‘redis://h:p3ff91c9b0e2f30eca571b98751cb9684e38377a1def02ef02fcc19ff2bcaed05@ec2-34-203-99-119.compute-1.amazonaws.com:9619’)],
-        },
-        'ROUTING': 'yourapp.routing.channel_routing',
-    },
-}
-
- # Al Redis Server
-BROKER_URL = ‘redis://h:p3ff91c9b0e2f30eca571b98751cb9684e38377a1def02ef02fcc19ff2bcaed05@ec2-34-203-99-119.compute-1.amazonaws.com:9619’
-CELERY_ACCEPT_CONTENT = [‘json’]
-CELERY_TASK_SERIALIZER = ‘json’
-CELERY_RESULT_SERIALIZER = ‘json’
 
 
 # Database
