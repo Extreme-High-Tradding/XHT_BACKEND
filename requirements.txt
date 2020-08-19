@@ -9,3 +9,4 @@ daphne
 celery
 channels
 redis
+django-redis-cache
