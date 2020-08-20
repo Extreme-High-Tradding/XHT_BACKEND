@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'channels',
     'operations',
 ]
 
@@ -74,18 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'xht_project.wsgi.application'
-
-
-
-# Channels
-ASGI_APPLICATION = "xht_project.routing.application"
-CACHES = {
-    "default": {
-         "BACKEND": "redis_cache.RedisCache",
-         "LOCATION": os.environ.get('redis://h:p3ff91c9b0e2f30eca571b98751cb9684e38377a1def02ef02fcc19ff2bcaed05@ec2-34-203-99-119.compute-1.amazonaws.com:9619'),
-    }
-}
-
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
