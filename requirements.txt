@@ -1,5 +1,5 @@
 Django
-djangorestframework
+python-dotenv
 psycopg2-binary
 pillow
 gunicorn
@@ -8,5 +8,3 @@ asgi-redis
 daphne
 celery
 channels
-redis
-django-redis-cache

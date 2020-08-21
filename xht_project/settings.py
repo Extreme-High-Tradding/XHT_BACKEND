@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'r+q*gam9oct79h!)7s31l^!k=i83k&828*0q--wpb+a$lw=9st'
 
@@ -77,8 +78,8 @@ WSGI_APPLICATION = 'xht_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {'default': dj_database_url.config(default='postgres://jziltjlefpaaol:40ecefcc3426ef71d7f1d678330ce954e049b8587175e30f3e0abef2c83aad26@ec2-18-235-109-97.compute-1.amazonaws.com:5432/dfld2tg7261gbv')}
-DATABASE_URL = 'postgres://jziltjlefpaaol:40ecefcc3426ef71d7f1d678330ce954e049b8587175e30f3e0abef2c83aad26@ec2-18-235-109-97.compute-1.amazonaws.com:5432/dfld2tg7261gbv'
+DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'])}
+DATABASE_URL = os.environ['DATABASE_URL']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

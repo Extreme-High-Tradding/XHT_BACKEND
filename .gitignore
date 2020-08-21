@@ -3,7 +3,7 @@ example/*
 .vscode/*
 Dockerfile
 docker-compose.yml
-
+.env
 # Byte-compiled / optimized / DLL files
 __pycache__/*
 *.py[cod]
