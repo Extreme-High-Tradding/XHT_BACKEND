@@ -9,7 +9,7 @@ haikunator==1.0.1
 msgpack-python==0.4.7
 psycopg2
 redis==2.10.5
-six==1.10.0
+six
 Twisted==15.5.0
 txaio==2.2.1
 wheel==0.24.0
