@@ -1,10 +1,9 @@
 Django
-python-dotenv
 psycopg2-binary
 pillow
 gunicorn
 django-heroku
 asgi-redis
+channels
 daphne
 celery
-channels
