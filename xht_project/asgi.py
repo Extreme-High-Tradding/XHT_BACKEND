@@ -10,5 +10,5 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/
 import os
 import channels.asgi
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'operations.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'xht_project.settings')
 channel_layer = channels.asgi.get_channel_layer()
