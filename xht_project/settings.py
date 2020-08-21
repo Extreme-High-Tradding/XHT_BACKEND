@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'operations',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +81,18 @@ WSGI_APPLICATION = 'xht_project.wsgi.application'
 
 DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'])}
 DATABASE_URL = os.environ['DATABASE_URL']
+
+# Channels
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+        },
+        'ROUTING': 'operations.routing.channel_routing',
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
