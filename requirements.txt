@@ -1,5 +1,5 @@
 asgi-redis==0.8.3
-asgiref==0.9
+asgiref
 autobahn==0.12.1
 channels==0.9.3
 daphne==0.9.1
