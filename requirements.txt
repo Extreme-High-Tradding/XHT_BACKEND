@@ -3,7 +3,7 @@ psycopg2-binary
 pillow
 gunicorn
 django-heroku
-asgiref==0.9
+asgiref
 asgi-redis==0.8.3
 channels==0.9.3
 daphne
