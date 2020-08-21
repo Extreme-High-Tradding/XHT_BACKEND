@@ -10,7 +10,7 @@ __pycache__/*
 
 # C extensions
 *.so
-
+ignoredfolder
 # Distribution / packaging
 bin/
 build/
