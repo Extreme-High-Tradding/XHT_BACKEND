@@ -18,7 +18,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'channels',
-    'chat',
+    'app',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -32,7 +32,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'chat.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = (
     {
@@ -105,7 +105,7 @@ CHANNEL_LAYERS = {
         "CONFIG": {
             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
-        "ROUTING": "chat.routing.channel_routing",
+        "ROUTING": "app.routing.channel_routing",
     },
 }
 
