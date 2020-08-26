@@ -18,7 +18,7 @@ def ws_receive(message):
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
-    m = room.messages.create(handle=data['handle'], message=data['message'])
+    m = room.messages.create(handle=data['handle'], message=data['message'], user=data['user'], amount=data['amount'],price=data['price'])
     Group('chat-'+label).send({'text': json.dumps(m.content)})
 
 @channel_session
