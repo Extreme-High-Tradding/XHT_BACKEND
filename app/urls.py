@@ -2,5 +2,5 @@ from django.conf.urls import include, url
 from . import views
 
 urlpatterns = [
-    url('', views.chat_room, name='chat_room'), 
+    url('chat', views.chat_room, name='chat_room'), 
 ]
