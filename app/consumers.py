@@ -15,7 +15,6 @@ def ws_connect(message):
 
 @channel_session
 def ws_receive(message):
-    print(message)
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])

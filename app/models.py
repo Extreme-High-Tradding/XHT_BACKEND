@@ -7,8 +7,11 @@ class Room(models.Model):
 
 class Message(models.Model):
     room = models.ForeignKey(Room, related_name='messages', on_delete=models.CASCADE)
-    handle = models.TextField()
-    message = models.TextField()
+    handle = models.TextField(null=True,blank=True)
+    message = models.TextField(null=True,blank=True)
+    user = models.TextField(null=True,blank=True)
+    amount = models.TextField(null=True,blank=True)
+    price = models.TextField(null=True,blank=True)
     timestamp = models.DateTimeField(default=timezone.now, db_index=True)
 
 class Test(models.Model):

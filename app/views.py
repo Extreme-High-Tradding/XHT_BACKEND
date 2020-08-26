@@ -1,7 +1,7 @@
 from .models import Room
 from django.shortcuts import render, redirect
 
-def chat_room(request):
+def transactions(request):
     # If the room with the given label doesn't exist, automatically create it
     # upon first visit (a la etherpad).
     

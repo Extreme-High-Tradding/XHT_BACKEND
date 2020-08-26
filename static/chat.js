@@ -10,6 +10,9 @@ $(function() {
             + '<td>' + data.timestamp + '</td>' 
             + '<td>' + data.handle + '</td>'
             + '<td>' + data.message + ' </td>'
+            + '<td>' + data.user + ' </td>'
+            + '<td>' + data.amount + ' </td>'
+            + '<td>' + data.price + ' </td>'
         + '</tr>');
     };
 
@@ -17,6 +20,9 @@ $(function() {
         var message = {
             handle: $('#handle').val(),
             message: $('#message').val(),
+            user: $('#user').val(),
+            amount: $('#amount').val(),
+            price: $('#price').val(),
         }
         chatsock.send(JSON.stringify(message));
         return false;
