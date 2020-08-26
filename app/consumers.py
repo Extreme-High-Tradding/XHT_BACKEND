@@ -20,7 +20,7 @@ def ws_receive(message):
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
     m = room.messages.create(handle=data['handle'], message=data['message'])
-    Group('chat-'+label).send({'text': json.dumps(m.as_dict())})
+    Group('chat-'+label).send({'text': json.dumps(m.content)})
 
 @channel_session
 def ws_disconnect(message):
