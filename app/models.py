@@ -10,3 +10,7 @@ class Message(models.Model):
     handle = models.TextField()
     message = models.TextField()
     timestamp = models.DateTimeField(default=timezone.now, db_index=True)
+
+class Test(models.Model):
+    name = models.TextField()
+    label = models.SlugField(unique=True)
