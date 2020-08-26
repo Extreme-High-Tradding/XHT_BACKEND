@@ -5,7 +5,7 @@ from .models import Room
 @channel_session
 def ws_connect(message):
     prefix, label = message['path'].strip('/').split('/')
-    room = Room.objects.get(label=label)
+    room = Room.objects.get(label='testroom')
     Group('chat-' + label).add(message.reply_channel)
     message.channel_session['room'] = room.label
 
@@ -13,7 +13,7 @@ def ws_connect(message):
 def ws_receive(message):
     print(message)
     label = message.channel_session['room']
-    room = Room.objects.get(label=label)
+    room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
     m = room.messages.create(handle=data['handle'], message=data['message'])
     Group('chat-'+label).send({'text': json.dumps(m.as_dict())})
