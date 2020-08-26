@@ -18,7 +18,7 @@ $(function() {
             handle: $('#handle').val(),
             message: $('#message').val(),
         }
-        chat_socket.send(JSON.stringify(message));
+        chatsock.send(JSON.stringify(message));
         return false;
     });
 });
