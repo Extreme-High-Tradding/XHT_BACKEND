@@ -3,6 +3,7 @@ from channels.sessions import channel_session
 from .models import Room
 import json
 import re
+from models import Transactions
 
 
 @channel_session
@@ -18,10 +19,17 @@ def ws_receive(message):
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
-    m = room.messages.create(handle=data['handle'], message=data['message'], user=data['user'], amount=data['amount'],price=data['price'])
+    m = Transactions.objects.create(user_id=data['user_id'], price_opened =data['price'], 
+                                    price_closed=data['price_closed'], 
+                                    amount_actives=data['amount'],
+                                    operation_type=data['operation_type'], )
     Group('chat-'+label).send({'text': json.dumps(m.content)})
+
+
 
 @channel_session
 def ws_disconnect(message):
     label = message.channel_session['room']
     Group('chat-'+label).discard(message.reply_channel)
+
+
