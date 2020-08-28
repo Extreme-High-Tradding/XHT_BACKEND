@@ -18,7 +18,6 @@ class Message(models.Model):
     timestamp = models.DateTimeField(default=timezone.now, db_index=True)
 
 # XHT models
-
 class Financial(models.Model):
     user_id = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
     balance = models.DecimalField(default = 100000.000000, max_digits=19, decimal_places=6 )
@@ -28,7 +27,6 @@ class Financial(models.Model):
     active1_amount = models.DecimalField(default = 0, blank = True, max_digits=19, decimal_places=10)
     active2_amount = models.DecimalField(default = 0, blank = True, max_digits=19, decimal_places=10)
     active3_amount = models.DecimalField(default = 0, blank = True, max_digits=19, decimal_places=10)
-
 
 class Transacctions(models.Model):
     
