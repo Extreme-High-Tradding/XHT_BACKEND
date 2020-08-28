@@ -8,3 +8,10 @@ venv/
 
 __pycache__/*
 *.pyc
+.venv/bin .
+venv/include 
+.venv/lib 
+.venv/lib64 
+.venv/pyvenv.cfg 
+.venv/share
+.venv/*

@@ -3,7 +3,7 @@ from channels.sessions import channel_session
 from .models import Room
 import json
 import re
-from models import Transactions
+from .models import Transactions
 
 
 @channel_session
@@ -19,9 +19,10 @@ def ws_receive(message):
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
+
     #here goes code 1
     u = Finacial.objects.create(user_id = data['user'])
-    m = Transactions.objects.create(user_id = data['user'],
+    m = Transactions.objects.create(user_id = int(data['user']),
                                     opening_price = data['price'], 
                                     closing_price = data['price'],
                                     asset_id = data['asset'], 
