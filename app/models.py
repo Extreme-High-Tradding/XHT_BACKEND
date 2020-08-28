@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Testing room models
 
@@ -18,25 +19,24 @@ class Message(models.Model):
 
 # XHT models
 
-class Money(models.Model):
-    actual_money = models.DecimalField(max_digits=19, decimal_places=10)
-    active1_average_price_date = models.DecimalField(max_digits=19, decimal_places=10)
-    active2_average_price_date = models.DecimalField(max_digits=19, decimal_places=10)
-    active3_average_price_date = models.DecimalField(max_digits=19, decimal_places=10)
-    
-
-class Users(models.Model):
-    user_name = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+class Financial(models.Model):
+    user_id = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+    balance = models.DecimalField(default = 100000.000000, max_digits=19, decimal_places=6 )
+    active1_average_price = models.DecimalField(default = 0, blank = True, max_digits=19, decimal_places=10)
+    active2_average_price = models.DecimalField(default = 0, blank = True, max_digits=19, decimal_places=10)
+    active3_average_price = models.DecimalField(default = 0, blank = True, max_digits=19, decimal_places=10)
+    active1_amount = models.DecimalField(default = 0, blank = True, max_digits=19, decimal_places=10)
+    active2_amount = models.DecimalField(default = 0, blank = True, max_digits=19, decimal_places=10)
+    active3_amount = models.DecimalField(default = 0, blank = True, max_digits=19, decimal_places=10)
 
 
 class Transacctions(models.Model):
-    
-    buy_price_opened = models.DecimalField(max_digits=19, decimal_places=10)
-    sell_price_closed = models.DecimalField(max_digits=19, decimal_places=10)
-    amount_actives = models.IntegerField()
-    date = models.DateTimeField(default=timezone.now)
-    active_id = models.CharField(max_length=50)
+    transaction_id = models.IntegerField(primary_key=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    opening_price = models.DecimalField(max_digits=19, decimal_places=6)
+    closing_price = models.DecimalField(default = 0, blank = True, null = True, max_digits=19, decimal_places=6)
+    amount_assets = models.IntegerField()
+    date = models.DateTimeField(default = timezone.now)
+    asset_id = models.CharField(max_length = 50)# asset_id = 'tesla', 'petroleo', 'bitcoin'
+    operation_type = models.BooleanField(default = False)# False= = 'Buy', True = 'Sell' 
+    operation_status = models.BooleanField(default = False)# False = open , False = 'close'
