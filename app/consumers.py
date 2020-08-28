@@ -19,12 +19,17 @@ def ws_receive(message):
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
-    m = Transactions.objects.create(user_id = data['user_id'], opening_price = data['price'], 
-                                    closing_price = data['closing_price'],
-                                    asset_id = data['asset_id'] 
+    m = Transactions.objects.create(user_id = data['user'],
+                                    opening_price = data['price'], 
+                                    closing_price = data['price'],
+                                    asset_id = data['asset'], 
                                     amount_assets = data['amount'],
-                                    operation_type = data['operation_type'],
-                                    operation_status = data['operation_status'])
+                                    operation_type = data['operation_type'], # Compra y Venta
+                                    operation_status = data['operation_status']) # Activo - cerrada
+    
+    Group('chat-'+label).send({'text': json.dumps(m.content)})
+    
+    """                                    
     #Classifying transaction
     if m.operation_type == False:
         Transactions.object.create(user_id = m.user_id, opening_price = m.opening_price,
@@ -45,10 +50,10 @@ def ws_receive(message):
             user_balance.active3_amount += m.amount_assets
             user_balance.balance -= m.opening_price
         #Catch: look for error type and aply try catch function
-
+        """
         
 
-    Group('chat-'+label).send({'text': json.dumps(m.content)})
+    
 
 
 
