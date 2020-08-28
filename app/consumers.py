@@ -19,6 +19,7 @@ def ws_receive(message):
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
+    #here goes code 1
     m = Transactions.objects.create(user_id = data['user'],
                                     opening_price = data['price'], 
                                     closing_price = data['price'],
@@ -26,7 +27,7 @@ def ws_receive(message):
                                     amount_assets = data['amount'],
                                     operation_type = data['operation_type'], # Compra y Venta
                                     operation_status = data['operation_status']) # Activo - cerrada
-    
+    # till here code 1
     Group('chat-'+label).send({'text': json.dumps(m.content)})
     
     """                                    
@@ -51,9 +52,28 @@ def ws_receive(message):
             user_balance.balance -= m.opening_price
         #Catch: look for error type and aply try catch function
         """
-        
+    # #code 1 {
+    # if data['operation_type']== False:
+    #     Transactions.object.create(user_id = data['user'],
+    #                                 opening_price = data['price'],
+    #                                 amount_assets = data['amount'],
+    #                                 asset_id = data['asset'])
+    #     #Modify users balance
+    #     user_balance = Financial.objects.get(user_id = data['user'])
+    #     #try:look for error type and aply try catch function
+    #     if user_balance.asset_id == 'tesla':
+    #         user_balance.active1_amount += data['amount']
+    #         user_balance.balance -= data['price']
 
-    
+    #     elif user_balance.asset_id == 'petroleo':
+    #         user_balance.active2_amount += data['amount']
+    #         user_balance.balance -= data['price']
+        
+    #     elif user_balance.asset_id == 'bitcoin':
+    #         user_balance.active3_amount += data['amount']
+    #         user_balance.balance -= data['price']
+    #     #Catch: look for error type and aply try catch function 
+    # #code 1   }
 
 
 
