@@ -32,7 +32,7 @@ class Financial(models.Model):
 
 class Transacctions(models.Model):
     
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False,blank=False,default = 0)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False,blank=False)
     opening_price = models.DecimalField(max_digits=19, decimal_places=6 , blank = True, null = True)
     closing_price = models.DecimalField(default = 0, blank = True, null = True, max_digits=19, decimal_places=6)
     amount_assets = models.IntegerField(blank = False, null = False)
