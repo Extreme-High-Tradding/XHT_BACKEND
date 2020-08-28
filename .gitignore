@@ -5,3 +5,6 @@ htmlcov/
 staticfiles/
 venv/
 .ignoredfolder/*
+
+__pycache__/*
+*.pyc
