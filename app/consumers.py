@@ -20,13 +20,14 @@ def ws_receive(message):
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
     #here goes code 1
+    u = Finacial.objects.create(user_id = data['user'])
     m = Transactions.objects.create(user_id = data['user'],
                                     opening_price = data['price'], 
                                     closing_price = data['price'],
                                     asset_id = data['asset'], 
                                     amount_assets = data['amount'],
-                                    operation_type = data['operation_type'], # Compra y Venta
-                                    operation_status = data['operation_status']) # Activo - cerrada
+                                    operation_type = data['operation_type'], # False= = 'Buy', True = 'Sell' 
+                                    operation_status = data['operation_status']) # False = open , True = 'close'
     # till here code 1
     Group('chat-'+label).send({'text': json.dumps(m.content)})
     
@@ -53,10 +54,12 @@ def ws_receive(message):
         #Catch: look for error type and aply try catch function
         """
     # #code 1 {
-    # if data['operation_type']== False:
+    # if data['operation_type']== False:# Buy operation
+    #     #creating transaction row
     #     Transactions.object.create(user_id = data['user'],
     #                                 opening_price = data['price'],
     #                                 amount_assets = data['amount'],
+    #                                  operation_type = data['operation_type'],
     #                                 asset_id = data['asset'])
     #     #Modify users balance
     #     user_balance = Financial.objects.get(user_id = data['user'])
@@ -72,8 +75,20 @@ def ws_receive(message):
     #     elif user_balance.asset_id == 'bitcoin':
     #         user_balance.active3_amount += data['amount']
     #         user_balance.balance -= data['price']
+
+    # # Sell function, open transaction
+    # elif (data['operation_type']== True) and (data['operation_status'] == False):
+    #     #creating transaction row
+    #     Transactions.object.create(user_id = data['user'],
+    #                                 opening_price = data['price'],
+    #                                 amount_assets = data['amount'],
+    #                                 operation_type = data['operation_type'],
+    #                                 operation_status = data['operation_status'],
+    #                                 asset_id = data['asset'])
+    #     #Returning average price
+    #     average()
     #     #Catch: look for error type and aply try catch function 
-    # #code 1   }
+    # # #code 1   }
 
 
 
