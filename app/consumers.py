@@ -3,7 +3,7 @@ from channels.sessions import channel_session
 from .models import Room
 import json
 import re
-from models import Transactions
+from .models import Transactions
 
 
 @channel_session
