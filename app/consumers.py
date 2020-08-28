@@ -19,7 +19,7 @@ def ws_receive(message):
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
-    m = Transactions.objects.create(user_id = data['user'],
+    m = Transactions.objects.create(user_id = int(data['user']),
                                     opening_price = data['price'], 
                                     closing_price = data['price'],
                                     asset_id = data['asset'], 
