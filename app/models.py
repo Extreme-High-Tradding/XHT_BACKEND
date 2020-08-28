@@ -28,7 +28,7 @@ class Financial(models.Model):
     active2_amount = models.DecimalField(default = 0, blank = True, max_digits=19, decimal_places=10)
     active3_amount = models.DecimalField(default = 0, blank = True, max_digits=19, decimal_places=10)
 
-class Transacctions(models.Model):
+class Transactions(models.Model):
     
     user_id = models.ForeignKey('Financial', on_delete=models.CASCADE)
     opening_price = models.DecimalField(max_digits=19, decimal_places=6 , blank = True, null = True)
