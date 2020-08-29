@@ -16,12 +16,12 @@
       <tbody>
         {% for message in messages %}
           <tr>
-            <td>{{ message.formatted_timestamp }}</td>
-            <td>{{ message.handle }}</td>
-            <td>{{ message.message }}</td>
+            
+            <td>{{ message.user_id }}</td>
             <td>{{ message.price }}</td>
             <td>{{ message.amount }}</td>
-            <td>{{ message.user }}</td>
+            <td>{{ message.operation_status }}</td>
+            <td>{{ message.operation_type }}</td>
           </tr> 
         {% endfor %}
       </tbody>
@@ -29,7 +29,12 @@
       <tr>
         <td>Say something:</td>
         <td colspan=2>
-          <input id="message" type="text" placeholder="message">
+          <input id="user" type="text" placeholder="user">
+          <input id="price" type="text" placeholder="price">
+          <input id="amount" type="text" placeholder="amount">
+          <input id="asset" type="text" placeholder="asset">
+          <input id="operation_status" type="text" placeholder="operation_status">
+          <input id="operation_type" type="text" placeholder="operation_type">
           <button type="submit" id="go">Say it</button>
         </td>
       </tfoot>
