@@ -24,7 +24,9 @@ def ws_receive(message):
 
     #here goes code 1
     user = User.objects.create_user('Jair','Dummy@Dummy')
+    user.save()
     account = Fianancial.onjects.create(user_id=user)
+    account.save()
     m = Transactions.objects.create(user_id = int(data['user']),
                                     opening_price = data['price'], 
                                     closing_price = data['price'],
