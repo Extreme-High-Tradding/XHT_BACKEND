@@ -7,22 +7,23 @@ $(function() {
     chatsock.onmessage = function(message) {
         var data = JSON.parse(message.data);
         $('#chat').append('<tr>' 
-            + '<td>' + data.timestamp + '</td>' 
-            + '<td>' + data.handle + '</td>'
-            + '<td>' + data.message + ' </td>'
-            + '<td>' + data.user + ' </td>'
-            + '<td>' + data.amount + ' </td>'
-            + '<td>' + data.price + ' </td>'
+            + '<td>' + data.user_id + '</td>' 
+            + '<td>' + data.opening_price + '</td>'
+            + '<td>' + data.amount_assets + ' </td>'
+            + '<td>' + data.asset_id + ' </td>'
+            + '<td>' + data.operation_status + ' </td>'
+            + '<td>' + data.operation_type + ' </td>'
         + '</tr>');
     };
 
     $('#chatform').on('submit', function(event) {
         var message = {
-            handle: $('#handle').val(),
-            message: $('#message').val(),
-            user: $('#user').val(),
-            amount: $('#amount').val(),
+            user_id: $('#user').val(),
             price: $('#price').val(),
+            amount_assets: $('#amount').val(),
+            asset_id: $('#asset').val(),
+            operation_status: $('#operation_status').val(),
+            operation_type: $('#operation_type').val(),
         }
         chatsock.send(JSON.stringify(message));
         return false;
