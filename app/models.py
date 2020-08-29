@@ -35,6 +35,6 @@ class Transactions(models.Model):
     closing_price = models.DecimalField(default = 0, blank = False, null = False, max_digits=19, decimal_places=6)
     amount_assets = models.IntegerField(blank = False, null = False)
     date = models.DateTimeField(default = timezone.now, null = False, blank = False)
-    asset_id = models.CharField(max_length = 50, blank = False, null = False )# asset_id = 'tesla', 'petroleo', 'bitcoin'
+    asset_id = models.CharField(max_length = 50, blank = False, null = False )# asset_id = 'tesla', 'gold', 'bitcoin'
     operation_type = models.BooleanField(default = False, blank = False, null = False)# False= = 'Buy', True = 'Sell' 
     operation_status = models.BooleanField(default = True, blank = False, null = False)# False = open , True = 'close'
