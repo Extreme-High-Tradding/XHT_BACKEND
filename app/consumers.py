@@ -4,6 +4,8 @@ from .models import Room
 import json
 import re
 from .models import Transactions,Financial
+from django.contrib.auth.models import User
+
 
 
 @channel_session
@@ -21,7 +23,7 @@ def ws_receive(message):
     data = json.loads(message['text'])
 
     #here goes code 1
-    u = Financial.objects.create(user_id = int(data['user']))
+    # u = Financial.objects.create(user_id = int(data['user']))
     m = Transactions.objects.create(user_id = int(data['user']),
                                     opening_price = data['price'], 
                                     closing_price = data['price'],
