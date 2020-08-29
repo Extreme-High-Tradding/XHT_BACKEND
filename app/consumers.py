@@ -25,7 +25,7 @@ def ws_receive(message):
     #here goes code 1
 
 
-    m = Transactions.objects.create(user_id = int(data['user']),
+    m = Transactions.objects.create(user_id = data['user'],
                                     opening_price = data['price'], 
                                     closing_price = data['price'],
                                     asset_id = data['asset'], 
