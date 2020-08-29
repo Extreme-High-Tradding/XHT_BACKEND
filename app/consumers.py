@@ -21,11 +21,11 @@ def ws_receive(message):
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
-
+    user_striped = data['user'].strip("'")
     #here goes code 1
 
 
-    m = Transactions.objects.create(user_id = data['user'],
+    m = Transactions.objects.create(user_id = user_striped,
                                     opening_price = data['price'], 
                                     closing_price = data['price'],
                                     asset_id = data['asset'], 
