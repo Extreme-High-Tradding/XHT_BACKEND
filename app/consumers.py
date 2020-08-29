@@ -58,64 +58,83 @@ def ws_receive(message):
         #Catch: look for error type and aply try catch function
         """
     # #code 1 {
-    # if data['operation_type']== False:# Buy operation
+    # # Buy operation
+    # user_balance = Financial.objects.get(user_id = data['user'])
+    # #if user does not have enough credit, user can not buy assets
+    # if (data['operation_type']== False) & (user_balance.balance >= data['price']):
     #     #creating transaction row
     #     m = Transactions.object.create(user_id = data['user'],
     #                                 opening_price = data['price'],
     #                                 amount_assets = data['amount'],
     #                                  operation_type = data['operation_type'],
     #                                 asset_id = data['asset'])
+    #     #save()
     #     #Modify users balance
     #     user_balance = Financial.objects.get(user_id = data['user'])
     #     #try:look for error type and aply try catch function
-    #     if user_balance.asset_id == 'tesla':
+    #     if user_balance.asset_id == data['asset']:
     #         user_balance.active1_amount += data['amount']
     #         user_balance.balance -= data['price']
 
-    #     elif user_balance.asset_id == 'petroleo':
+    #     elif user_balance.asset_id == data['asset']:
     #         user_balance.active2_amount += data['amount']
     #         user_balance.balance -= data['price']
         
-    #     elif user_balance.asset_id == 'bitcoin':
+    #     elif user_balance.asset_id == data['asset']:
     #         user_balance.active3_amount += data['amount']
     #         user_balance.balance -= data['price']
+    #     #save()
+    # else:
+    #     return print('User does not have enough credit')
 
     # # Sell function, open transaction
+    # #if user does not have enough assets, user can not open a sell movement. with the following lines
+    # #we avoid than user sell assets before of buy enough
     # elif (data['operation_type']== True) and (data['operation_status'] == False):
     #     #creating transaction row
     #     amount_check = Financial.objects.get(user_id = data['user'])
-    #     m = Transactions.object.create(user_id = data['user'],
+    #     if ((amount_check.active1_amount > 0 & amount_check.active1_amount >= data['amount'])
+    #         or (amount_check.active2_amount > 0 & amount_check.active2_amount >= data['amount'])
+    #         or (amount_check.active3_amount > 0 & amount_check.active3_amount >= data['amount'])) 
+    #         m = Transactions.object.create(user_id = data['user'],
     #                                 opening_price = data['price'],
     #                                 amount_assets = data['amount'],
     #                                 operation_type = data['operation_type'],
     #                                 operation_status = data['operation_status'],
     #                                 asset_id = data['asset'])
-    #     #Returning average price
-    #     average()
+    #               #get the transaction_id and return it with the average
+    #         #Returning average price
+    #         #save()
+    #         average()
+    #     else:
+    #         return print('the user does not have enough assets for transaction' )
+
+        
     # # Sell function, closed transaction
     # elif (data['operation_type']== True) and (data['operation_status'] == True):
-    #             m = Transactions.object.create(user_id = data['user'],
-    #                                 closing_price = data['price'],
-    #                                 amount_assets = data['amount'],
-    #                                 operation_type = data['operation_type'],
-    #                                 operation_status = data['operation_status'],
-    #                                 asset_id = data['asset'])
+    #     open_transaction = Transactions.object.get(transaction_id = data['variable for transaction_id']) #check for variable
+    #     open_transaction.closing_price = data['closing_price']
+    #     open_transaction.operation_status = data['operation_status']
+    #     #save()
     #     #Modify users balance
     #     user_balance = Financial.objects.get(user_id = data['user'])
     #     #try:look for error type and aply try catch function
-    #     if user_balance.asset_id == 'tesla':
-    #         user_balance.active1_amount -= data['amount']
-    #         user_balance.balance += data['price']
+    #     if user_balance.asset_id == open_transaction.asset_id:
+    #         user_balance.active1_amount -= open_transaction.amount_assets
+    #         user_balance.balance += data['closing_price']
 
-    #     elif user_balance.asset_id == 'petroleo':
-    #         user_balance.active2_amount -= data['amount']
-    #         user_balance.balance += data['price']
+    #     elif user_balance.asset_id == open_transaction.asset_id:
+    #         user_balance.active2_amount -= open_transaction.amount_assets
+    #         user_balance.balance += data['closing_price']
         
-    #     elif user_balance.asset_id == 'bitcoin':
-    #         user_balance.active3_amount -= data['amount']
-    #         user_balance.balance += data['price']
+    #     elif user_balance.asset_id == open_transaction.asset_id:
+    #         user_balance.active3_amount -= open_transaction.amount_assets
+    #         user_balance.balance += data['closing_price']
 
+    #     #save()
     #     average()
+    # else:
+    #     return print('User ')
     #     #Catch: look for error type and aply try catch function 
     # # #code 1   }
 
