@@ -60,7 +60,7 @@ def ws_receive(message):
     # #code 1 {
     # if data['operation_type']== False:# Buy operation
     #     #creating transaction row
-    #     Transactions.object.create(user_id = data['user'],
+    #     m = Transactions.object.create(user_id = data['user'],
     #                                 opening_price = data['price'],
     #                                 amount_assets = data['amount'],
     #                                  operation_type = data['operation_type'],
@@ -83,13 +83,38 @@ def ws_receive(message):
     # # Sell function, open transaction
     # elif (data['operation_type']== True) and (data['operation_status'] == False):
     #     #creating transaction row
-    #     Transactions.object.create(user_id = data['user'],
+    #     amount_check = Financial.objects.get(user_id = data['user'])
+    #     m = Transactions.object.create(user_id = data['user'],
     #                                 opening_price = data['price'],
     #                                 amount_assets = data['amount'],
     #                                 operation_type = data['operation_type'],
     #                                 operation_status = data['operation_status'],
     #                                 asset_id = data['asset'])
     #     #Returning average price
+    #     average()
+    # # Sell function, closed transaction
+    # elif (data['operation_type']== True) and (data['operation_status'] == True):
+    #             m = Transactions.object.create(user_id = data['user'],
+    #                                 closing_price = data['price'],
+    #                                 amount_assets = data['amount'],
+    #                                 operation_type = data['operation_type'],
+    #                                 operation_status = data['operation_status'],
+    #                                 asset_id = data['asset'])
+    #     #Modify users balance
+    #     user_balance = Financial.objects.get(user_id = data['user'])
+    #     #try:look for error type and aply try catch function
+    #     if user_balance.asset_id == 'tesla':
+    #         user_balance.active1_amount -= data['amount']
+    #         user_balance.balance += data['price']
+
+    #     elif user_balance.asset_id == 'petroleo':
+    #         user_balance.active2_amount -= data['amount']
+    #         user_balance.balance += data['price']
+        
+    #     elif user_balance.asset_id == 'bitcoin':
+    #         user_balance.active3_amount -= data['amount']
+    #         user_balance.balance += data['price']
+
     #     average()
     #     #Catch: look for error type and aply try catch function 
     # # #code 1   }
