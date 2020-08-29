@@ -29,7 +29,7 @@ def ws_receive(message):
                                     opening_price = float(data['price']), 
                                     closing_price = float(data['price']),
                                     asset_id = data['asset_id'], 
-                                    amount_assets = float(data['amount']),
+                                    amount_assets = float(data['amount_assets']),
                                     operation_type = (data['operation_type'] != 'False'),      #data['operation_type'],  False= = 'Buy', True = 'Sell' 
                                     operation_status = (data['operation_status'] != 'False'))   #data['operation_status'])  False = open , True = 'close'
     # till here code 1
