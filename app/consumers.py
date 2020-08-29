@@ -28,7 +28,7 @@ def ws_receive(message):
     m = Transactions.objects.create(user_id = user[0],
                                     opening_price = float(data['price']), 
                                     closing_price = float(data['price']),
-                                    asset_id = data['asset'], 
+                                    asset_id = data['asset_id'], 
                                     amount_assets = float(data['amount']),
                                     operation_type = (data['operation_type'] != 'False'),      #data['operation_type'],  False= = 'Buy', True = 'Sell' 
                                     operation_status = (data['operation_status'] != 'False'))   #data['operation_status'])  False = open , True = 'close'
