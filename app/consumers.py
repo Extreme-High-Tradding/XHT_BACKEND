@@ -30,8 +30,8 @@ def ws_receive(message):
                                     closing_price = data['price'],
                                     asset_id = data['asset'], 
                                     amount_assets = data['amount'],
-                                    operation_type = data['operation_type'], # False= = 'Buy', True = 'Sell' 
-                                    operation_status = data['operation_status']) # False = open , True = 'close'
+                                    operation_type = False      #data['operation_type'],  False= = 'Buy', True = 'Sell' 
+                                    operation_status = False    #data['operation_status'])  False = open , True = 'close'
     # till here code 1
     Group('chat-'+label).send({'text': json.dumps(m.content)})
     
