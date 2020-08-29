@@ -151,6 +151,6 @@ def ws_disconnect(message):
 def average(asset_id):
     list_asset = Transactions.objects.filter(asset_id = asset_id,
                                             operation_status = True,
-                                            operation_type = False)
+                                            operation_type = True)
 
 
