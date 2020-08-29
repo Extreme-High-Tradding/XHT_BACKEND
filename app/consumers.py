@@ -32,6 +32,7 @@ def ws_receive(message):
                                     amount_assets = float(data['amount_assets']),
                                     operation_type = (data['operation_type'] != 'False'),      #data['operation_type'],  False= = 'Buy', True = 'Sell' 
                                     operation_status = (data['operation_status'] != 'False'))   #data['operation_status'])  False = open , True = 'close'
+    m.save()
     # till here code 1
     Group('chat-'+label).send({'text': json.dumps(m.content) })
     
