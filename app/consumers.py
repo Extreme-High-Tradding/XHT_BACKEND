@@ -26,12 +26,12 @@ def ws_receive(message):
     user = Financial.objects.get_or_create(user_id_id=int(data['user']))
 
     m = Transactions.objects.create(user_id = user[0],
-                                    opening_price = 200, 
-                                    closing_price = 200,
-                                    asset_id = 1, 
-                                    amount_assets = 20,
-                                    operation_type = False,      #data['operation_type'],  False= = 'Buy', True = 'Sell' 
-                                    operation_status = False)   #data['operation_status'])  False = open , True = 'close'
+                                    opening_price = float(data['price']), 
+                                    closing_price = float(data['price']),
+                                    asset_id = data['asset'], 
+                                    amount_assets = float(data['amount']),
+                                    operation_type = (data['operation_type'] != 'False'),      #data['operation_type'],  False= = 'Buy', True = 'Sell' 
+                                    operation_status = (data['operation_status'] != 'False'))   #data['operation_status'])  False = open , True = 'close'
     # till here code 1
     Group('chat-'+label).send({'text': json.dumps(m.content)})
     
