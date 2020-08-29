@@ -71,7 +71,7 @@ def ws_receive(message):
     #                                 amount_assets = data['amount'],
     #                                  operation_type = data['operation_type'],
     #                                 asset_id = data['asset'])
-    #     #save()
+    #     #m.save()
     #     #Modify users balance
     #     user_balance = Financial.objects.get(user_id = data['user'])
     #     #try:look for error type and aply try catch function
@@ -86,7 +86,7 @@ def ws_receive(message):
     #     elif user_balance.asset_id == data['asset']:
     #         user_balance.active3_amount += data['amount']
     #         user_balance.balance -= data['price']
-    #     #save()
+    #     #m.save()
     # else:
     #     return print('User does not have enough credit')
 
@@ -107,7 +107,7 @@ def ws_receive(message):
     #                                 asset_id = data['asset'])
     #               #get the transaction_id and return it with the average
     #         #Returning average price
-    #         #save()
+    #         #m.save()
     #         average()
     #     else:
     #         return print('the user does not have enough assets for transaction' )
@@ -134,7 +134,7 @@ def ws_receive(message):
     #         user_balance.active3_amount -= open_transaction.amount_assets
     #         user_balance.balance += data['closing_price']
 
-    #     #save()
+    #     #m.save()
     #     average()
     # else:
     #     return print('User ')
