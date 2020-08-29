@@ -5,6 +5,7 @@ import json
 import re
 from .models import Transactions,Financial
 from django.contrib.auth.models import User
+from django.core import serializers
 
 
 
@@ -34,7 +35,8 @@ def ws_receive(message):
                                     operation_status = (data['operation_status'] != 'False'))   #data['operation_status'])  False = open , True = 'close'
     m.save()
     # till here code 1
-    Group('chat-'+label).send({'text': json.dumps(m.content) })
+    serialized_obj = serializers.serialize('json', [ m, ])
+    Group('chat-'+label).send({'text': serialized_obj })
     
     """                                    
     #Classifying transaction
