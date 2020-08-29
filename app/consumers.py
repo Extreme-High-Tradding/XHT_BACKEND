@@ -23,7 +23,7 @@ def ws_receive(message):
     data = json.loads(message['text'])
     # user_striped = data['user'].strip("'")
     #here goes code 1
-    user = Financial.objects.get_or_create(username=data['user'])
+    user = Financial.objects.get_or_create(user_id_id=int(data['user']))
 
     m = Transactions.objects.create(user_id = user.pk,
                                     opening_price = 200, 
