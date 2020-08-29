@@ -23,7 +23,7 @@ def ws_receive(message):
     data = json.loads(message['text'])
 
     #here goes code 1
-    u = User.objects.create(email='dummy@dummy.com', password='r4e3w2qq')
+    u = Financial.objects.create(email='dummy@dummy.com', password='r4e3w2qq')
     m = Transactions.objects.create(user_id = int(data['user']),
                                     opening_price = data['price'], 
                                     closing_price = data['price'],
