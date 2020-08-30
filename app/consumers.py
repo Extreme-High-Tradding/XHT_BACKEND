@@ -78,6 +78,23 @@ def ws_receive(message):
         if '1' == data['asset_id']:
             user_balance.active1_amount += int(data['amount_assets'])
             user_balance.balance -= Decimal(data['price'])
+            print("""         _nnnn_                      
+        dGGGGMMb     ,"""""""""""""".
+       @p~qp~~qMb    | Linux Rules! |
+       M|@||@\) M|   _;..............'
+       @,----.JM| -'
+      JS^\__/  qKL
+     dZP        qKRb
+    dZP          qKKb
+   fZP            SMMb
+   HZM            MMMM
+   FqM            MMMM
+ __| ".        |\dS"qML
+ |    `.       | `' \Zq
+_\)      \.___.,|     .'
+\____   \)MMMMMM|   .'
+     `-'       `--' hjm""")
+            print(user_balance.balance)
 
         elif '2' == data['asset_id']:
             user_balance.active2_amount += int(data['amount_assets'])
