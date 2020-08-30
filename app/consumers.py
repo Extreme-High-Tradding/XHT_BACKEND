@@ -246,10 +246,22 @@ def ws_disconnect(message):
 
 
 #Additional functions
-def average(asset_id):
-    list_asset = Transactions.objects.filter(asset_id = asset_id,
-                                            operation_status = True,
-                                            operation_type = True)
+def average(user_id,asset_id, operation_status, operation_type):
+    if((operation_type == False) or (operation_type == 'False')):
+        #buy average
+        for p in Transactions.objects.raw('SELECT opening_price FROM app_transactions WHERE operation_type = False AND user_id = user_id AND asset_id = asset_id;'):
+            print(p)
+    elif((operation_type == True) or (operation_type == 'True')) and 
+        ((operation_status == False) or (operation_status == 'False')):
+        #opening_sell average
+        for p in Transactions.objects.raw('SELECT opening_price FROM app_transactions'):
+            print(p)
+    elif((operation_type == True) or (operation_type == 'True')) and 
+        ((operation_status == True) or (operation_status == 'True')):
+        #closing_sell average
+        for p in Transactions.objects.raw('SELECT closing_price FROM app_transactions'):
+            print(p)
+    
 
 
 def buy(data, user_balance, label):
@@ -291,6 +303,7 @@ _\)      \.___.,|     .'
 \____   \)MMMMMM|   .'
      `-'       `--' hjm""")
     print(user_balance.balance)
+    average(m.user_id, m.asset_id, m.operation_status, m.operation_type)
     transaction = serializers.serialize('json', [ m, ])
     balance = serializers.serialize('json', [ user_balance, ])
     Group('chat-'+label).send({'text': transaction })
