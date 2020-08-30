@@ -88,13 +88,15 @@ def ws_receive(message):
             user_balance.balance -= Decimal(data['price'])
 
         user_balance.save()
+        transaction = serializers.serialize('json', [ m, ])
+        balance = serializers.serialize('json', [ user_balance, ])
+        Group('chat-'+label).send({'text': transaction })
+        Group('chat-'+label).send({'text': balance })
+    
     else:
         return print('User does not have enough credit or asset does not exist')#raise
 
-    transaction = serializers.serialize('json', [ m, ])
-    balance = serializers.serialize('json', [ user_balance, ])
-    Group('chat-'+label).send({'text': transaction })
-    Group('chat-'+label).send({'text': balance })
+
 
     # Sell function, open transaction
     #if user does not have enough assets, user can not open a sell movement. with the following lines
