@@ -64,27 +64,27 @@ def ws_receive(message):
     # Buy operation
     user_balance = Financial.objects.get_or_create(user_id_id=int(data['user_id']))# produccion get(user_id=data[user_id])
     #if user does not have enough credit, user can not buy assets
-    if (data['operation_type']== 'False') & (user_balance.balance >= float(data['price'])):
+    if (data['operation_type']== 'False') & (user_balance[1] >= float(data['price'])):
         #creating transaction row
         m = Transactions.object.create(user_id = user_balance[0],
                                     opening_price = float(data['price']),#float()
                                     amount_assets = float(data['amount']),
-                                     operation_type = False,
+                                    operation_type = False,
                                     asset_id = data['asset'])
         m.save()
         #Modify users balance
         #try:look for error type and aply try catch function
         if '1' == data['asset']:
-            user_balance.active1_amount += data['amount']
-            user_balance.balance -= data['price']
+            user_balance[5] += float(data['amount'])
+            user_balance[1] -= float(data['price'])
 
         elif '2' == data['asset']:
-            user_balance.active2_amount += data['amount']
-            user_balance.balance -= data['price']
+            user_balance[6] += float(data['amount'])
+            user_balance[1] -= float(data['price'])
         
         elif '3' == data['asset']:
-            user_balance.active3_amount += float(data['amount'])
-            user_balance.balance -= data['price']
+            user_balance[7] += float(data['amount'])
+            user_balance[1] -= float(data['price'])
         #m.save()
     else:
         return print('User does not have enough credit or asset does not exist')#raise
