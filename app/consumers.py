@@ -23,6 +23,23 @@ def ws_receive(message):
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
+    print("""         _nnnn_                      
+        dGGGGMMb     ,"""""""""""""".
+       @p~qp~~qMb    | Linux Rules! |
+       M|@||@\) M|   _;..............'
+       @,----.JM| -'
+      JS^\__/  qKL
+     dZP        qKRb
+    dZP          qKKb
+   fZP            SMMb
+   HZM            MMMM
+   FqM            MMMM
+ __| ".        |\dS"qML
+ |    `.       | `' \Zq
+_\)      \.___.,|     .'
+\____   \)MMMMMM|   .'
+     `-'       `--' hjm""")
+    print(data)
     # # user_striped = data['user'].strip("'")
     # #here goes code 1
     # user = Financial.objects.get_or_create(user_id_id=int(data['user_id']))
@@ -115,23 +132,6 @@ def ws_receive(message):
                   #get the transaction_id and return it with the average
             #Returning average price
             m.save()
-            print("""         _nnnn_                      
-        dGGGGMMb     ,"""""""""""""".
-       @p~qp~~qMb    | Linux Rules! |
-       M|@||@\) M|   _;..............'
-       @,----.JM| -'
-      JS^\__/  qKL
-     dZP        qKRb
-    dZP          qKKb
-   fZP            SMMb
-   HZM            MMMM
-   FqM            MMMM
- __| ".        |\dS"qML
- |    `.       | `' \Zq
-_\)      \.___.,|     .'
-\____   \)MMMMMM|   .'
-     `-'       `--' hjm""")
-            print(m.id)
             user_balance.save()
             transaction = serializers.serialize('json', [ m, ])
             balance = serializers.serialize('json', [ user_balance, ])
@@ -142,34 +142,35 @@ _\)      \.___.,|     .'
             return print('the user does not have enough assets for transaction' )
 
         
-    # # Sell function, closed transaction
-    # elif (data['operation_type']== True) and (data['operation_status'] == True):
-    #     open_transaction = Transactions.objects.get(transaction_id = data['variable for transaction_id']) #check for variable
-    #     open_transaction.closing_price = data['closing_price']
-    #     open_transaction.operation_status = data['operation_status']
-    #     #save()
-    #     #Modify users balance
-    #     user_balance = Financial.objects.get(user_id = data['user'])
-    #     #try:look for error type and aply try catch function
-    #     if user_balance.asset_id == open_transaction.asset_id:
-    #         user_balance.active1_amount -= open_transaction.amount_assets
-    #         user_balance.balance += data['closing_price']
+    # Sell function, closed transaction
+    elif (data['operation_type']== 'True') and (data['operation_status'] == 'True'):
+        #check for variable¡¡¡¡¡¡IMPORTANTE!!!!temporal para pruebas id=41 o 40
+        open_transaction = Transactions.objects.get(id = 41)
+        #check for variable¡¡¡¡¡¡IMPORTANTE!!!!temporal para pruebas id=41 o 40
+        open_transaction.closing_price = Decimal(data['closing_price'])
+        open_transaction.operation_status = True
+        #save()
+        #Modify users balance
+        user_balance = Financial.objects.get(user_id_id=int(data['user_id']))
+        #try:look for error type and aply try catch function
+        if '1' == open_transaction.asset_id:
+            user_balance.active1_amount -= open_transaction.amount_assets
+            user_balance.balance += data['closing_price']
 
-    #     elif user_balance.asset_id == open_transaction.asset_id:
-    #         user_balance.active2_amount -= open_transaction.amount_assets
-    #         user_balance.balance += data['closing_price']
+        elif '2' == open_transaction.asset_id:
+            user_balance.active2_amount -= open_transaction.amount_assets
+            user_balance.balance += data['closing_price']
         
-    #     elif user_balance.asset_id == open_transaction.asset_id:
-    #         user_balance.active3_amount -= open_transaction.amount_assets
-    #         user_balance.balance += data['closing_price']
+        elif '3' == open_transaction.asset_id:
+            user_balance.active3_amount -= open_transaction.amount_assets
+            user_balance.balance += data['closing_price']
 
-    #     #m.save()
-    #     average()
-    # else:
-    #     return print('User ')# en lugar de return raise
-    #     raise #leyenda del error 
-    #     #Catch: look for error type and aply try catch function 
-    # # #code 1   }
+        m.save()
+        #average()
+        # en lugar de return raise
+        #raise #leyenda del error 
+        #Catch: look for error type and aply try catch function 
+    # #code 1   }
 
 
 
