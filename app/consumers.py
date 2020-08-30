@@ -28,6 +28,7 @@ def ws_receive(message):
     user_balance = Financial.objects.get(user_id_id=int(data['user_id']))# produccion get(user_id=data[user_id])
     #if user does not have enough credit, user can not buy assets
     if(data['operation_type'] == 'False') and (user_balance.balance >= float(data['price'])):
+        print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<BUY>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         buy(data=data, user_balance=user_balance, label=label)
     elif(data['operation_type']== 'True') and (data['operation_status'] == 'False'):
         opening_sell(data=data, user_balance= user_balance,label=label)
