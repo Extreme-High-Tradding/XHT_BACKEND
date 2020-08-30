@@ -88,6 +88,9 @@ def ws_receive(message):
             user_balance.balance -= Decimal(data['price'])
 
         user_balance.save()
+        print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print(user_balance.balance)
+        print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         transaction = serializers.serialize('json', [ m, ])
         balance = serializers.serialize('json', [ user_balance, ])
         Group('chat-'+label).send({'text': transaction })
@@ -108,7 +111,7 @@ def ws_receive(message):
             or (amount_check.active3_amount > 0 and amount_check.active3_amount >= int(data['amount_assets']))):
             m = Transactions.objects.create(user_id_id = int(data['user_id']),
                                     opening_price = float(data['price']),
-                                    amount_assets = int(data['amount']),
+                                    amount_assets = int(data['amount_assets']),
                                     operation_type = True,
                                     operation_status = False,
                                     asset_id = str(data['asset_id']))
