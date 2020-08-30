@@ -88,6 +88,23 @@ def ws_receive(message):
             user_balance.balance -= Decimal(data['price'])
 
         user_balance.save()
+        print("""         _nnnn_                      
+        dGGGGMMb     ,"""""""""""""".
+       @p~qp~~qMb    | Linux Rules! |
+       M|@||@\) M|   _;..............'
+       @,----.JM| -'
+      JS^\__/  qKL
+     dZP        qKRb
+    dZP          qKKb
+   fZP            SMMb
+   HZM            MMMM
+   FqM            MMMM
+ __| ".        |\dS"qML
+ |    `.       | `' \Zq
+_\)      \.___.,|     .'
+\____   \)MMMMMM|   .'
+     `-'       `--' hjm""")
+        print(user_balance.balance)
         transaction = serializers.serialize('json', [ m, ])
         balance = serializers.serialize('json', [ user_balance, ])
         Group('chat-'+label).send({'text': transaction })
@@ -116,6 +133,24 @@ def ws_receive(message):
             #Returning average price
             m.save()
             user_balance.save()
+            print("""         _nnnn_                      
+        dGGGGMMb     ,"""""""""""""".
+       @p~qp~~qMb    | Linux Rules! |
+       M|@||@\) M|   _;..............'
+       @,----.JM| -'
+      JS^\__/  qKL
+     dZP        qKRb
+    dZP          qKKb
+   fZP            SMMb
+   HZM            MMMM
+   FqM            MMMM
+ __| ".        |\dS"qML
+ |    `.       | `' \Zq
+_\)      \.___.,|     .'
+\____   \)MMMMMM|   .'
+     `-'       `--' hjm""")
+            print(user_balance.balance)
+            print(m.id)
             transaction = serializers.serialize('json', [ m, ])
             balance = serializers.serialize('json', [ user_balance, ])
             Group('chat-'+label).send({'text': transaction })
@@ -128,7 +163,7 @@ def ws_receive(message):
     # Sell function, closed transaction
     elif (data['operation_type']== 'True') and (data['operation_status'] == 'True'):
         #check for variable¡¡¡¡¡¡IMPORTANTE!!!!temporal para pruebas id=41 o 40
-        open_transaction = Transactions.objects.get(id = 40)
+        open_transaction = Transactions.objects.get(id = 43)
         #check for variable¡¡¡¡¡¡IMPORTANT!!!!temporal para pruebas id=41 o 40
         #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         #check for variable ¡¡¡¡¡IMPORTANT!!!!!data['closing_price '] 
@@ -157,6 +192,23 @@ def ws_receive(message):
 
         open_transaction.save()
         user_balance.save()
+        print("""         _nnnn_                      
+        dGGGGMMb     ,"""""""""""""".
+       @p~qp~~qMb    | Linux Rules! |
+       M|@||@\) M|   _;..............'
+       @,----.JM| -'
+      JS^\__/  qKL
+     dZP        qKRb
+    dZP          qKKb
+   fZP            SMMb
+   HZM            MMMM
+   FqM            MMMM
+ __| ".        |\dS"qML
+ |    `.       | `' \Zq
+_\)      \.___.,|     .'
+\____   \)MMMMMM|   .'
+     `-'       `--' hjm""")
+        print(user_balance.balance)
         #average()
         # en lugar de return raise
         #raise #leyenda del error 
