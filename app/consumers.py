@@ -135,7 +135,7 @@ _\)      \.___.,|     .'
 \____   \)MMMMMM|   .'
      `-'       `--' hjm""")
             print(m)
-            print(tablas = Transactions.objects.all())
+            print(Transactions.objects.all())
             user_balance.save()
             transaction = serializers.serialize('json', [ m, ])
             balance = serializers.serialize('json', [ user_balance, ])
