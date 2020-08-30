@@ -6,6 +6,7 @@ import re
 from .models import Transactions,Financial
 from django.contrib.auth.models import User
 from django.core import serializers
+import decimal
 
 
 
@@ -76,7 +77,7 @@ def ws_receive(message):
         #try:look for error type and aply try catch function
         if '1' == data['asset_id']:
             user_balance.active1_amount += int(data['amount_assets'])
-            user_balance.balance -= float(data['price'])
+            user_balance.balance -= Decimal(data['price'])
 
         elif '2' == data['asset_id']:
             user_balance.active2_amount += int(data['amount_assets'])
