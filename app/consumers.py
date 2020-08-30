@@ -253,13 +253,11 @@ def average(user_id,asset_id, operation_status, operation_type):
         #buy average
         for p in Transactions.objects.raw('SELECT opening_price FROM app_transactions WHERE operation_type = False AND user_id = user_id AND asset_id = asset_id;'):
             print(p)
-    elif((operation_type == True) or (operation_type == 'True')) and 
-        ((operation_status == False) or (operation_status == 'False')):
+    elif((operation_type == True) or (operation_type == 'True')) and ((operation_status == False) or (operation_status == 'False')):
         #opening_sell average
         for p in Transactions.objects.raw('SELECT opening_price FROM app_transactions'):
             print(p)
-    elif((operation_type == True) or (operation_type == 'True')) and 
-        ((operation_status == True) or (operation_status == 'True')):
+    elif((operation_type == True) or (operation_type == 'True')) and ((operation_status == True) or (operation_status == 'True')):
         #closing_sell average
         for p in Transactions.objects.raw('SELECT closing_price FROM app_transactions'):
             print(p)
