@@ -138,7 +138,8 @@ _\)      \.___.,|     .'
             Group('chat-'+label).send({'text': transaction })
             Group('chat-'+label).send({'text': balance })
             #average()
-            #return print('the user does not have enough assets for transaction' )
+        else:
+            return print('the user does not have enough assets for transaction' )
 
         
     # # Sell function, closed transaction
