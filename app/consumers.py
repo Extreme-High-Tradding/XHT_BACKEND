@@ -29,10 +29,22 @@ def ws_receive(message):
     #if user does not have enough credit, user can not buy assets
     if(data['operation_type'] == 'False') and (user_balance.balance >= float(data['price'])):
         buy()
+        transaction = serializers.serialize('json', [ m, ])
+        balance = serializers.serialize('json', [ user_balance, ])
+        Group('chat-'+label).send({'text': transaction })
+        Group('chat-'+label).send({'text': balance })
     elif(data['operation_type']== 'True') and (data['operation_status'] == 'False'):
         opening_sell()
+        transaction = serializers.serialize('json', [ m, ])
+        balance = serializers.serialize('json', [ user_balance, ])
+        Group('chat-'+label).send({'text': transaction })
+        Group('chat-'+label).send({'text': balance })
     elif (data['operation_type']== 'True') and (data['operation_status'] == 'True'):
         closing_sell()
+        transaction = serializers.serialize('json', [ open_transaction, ])
+        balance = serializers.serialize('json', [ user_balance, ])
+        Group('chat-'+label).send({'text': transaction })
+        Group('chat-'+label).send({'text': balance })
 
         #creating transaction row
     # # user_striped = data['user'].strip("'")
