@@ -361,15 +361,15 @@ def closing_sell(data, label):
         #try:look for error type and aply try catch function
     if '1' == open_transaction.asset_id:
         user_balance.active1_amount -= open_transaction.amount_assets
-        user_balance.balance += Decimal(100)
+        user_balance.balance += open_transaction.closing_price
 
     elif '2' == open_transaction.asset_id:
         user_balance.active2_amount -= open_transaction.amount_assets
-        user_balance.balance += Decimal(100)
+        user_balance.balance += open_transaction.closing_price
         
     elif '3' == open_transaction.asset_id:
         user_balance.active3_amount -= open_transaction.amount_assets
-        user_balance.balance += Decimal(100)
+        user_balance.balance += open_transaction.closing_price
 
     open_transaction.save()
     user_balance.save()
