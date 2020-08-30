@@ -28,7 +28,7 @@ def ws_receive(message):
     user_balance = Financial.objects.get(user_id_id=int(data['user_id']))# produccion get(user_id=data[user_id])
     #if user does not have enough credit, user can not buy assets
     if(data['operation_type'] == 'False') and (user_balance.balance >= float(data['price'])):
-        buy(data=data)
+        buy(data=data, user_balance=user_balance)
         transaction = serializers.serialize('json', [ m, ])
         balance = serializers.serialize('json', [ user_balance, ])
         Group('chat-'+label).send({'text': transaction })
@@ -264,7 +264,7 @@ def average(asset_id):
                                             operation_type = True)
 
 
-def buy(data):
+def buy(data, user_balance):
     m = Transactions.objects.create(user_id_id = int(data['user_id']),
                                     opening_price = float(data['price']),#float()
                                     amount_assets = int(data['amount_assets']),
