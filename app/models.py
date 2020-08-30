@@ -29,7 +29,7 @@ class Financial(models.Model):
     active3_amount = models.DecimalField(default = 0, blank = False, null = False, max_digits=19, decimal_places=10)
 
 class Transactions(models.Model):
-    
+    transaction_id = models.IntegerField(primary_key=True, blank = False, null = False)#test v1.30
     user_id = models.ForeignKey('Financial', on_delete=models.CASCADE)
     opening_price = models.DecimalField(max_digits=19, decimal_places=6 , blank = False, null = False)
     closing_price = models.DecimalField(default = 0, blank = False, null = False, max_digits=19, decimal_places=6)
