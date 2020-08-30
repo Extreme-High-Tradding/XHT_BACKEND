@@ -313,10 +313,10 @@ _\)      \.___.,|     .'
 
 def opening_sell():
     amount_check = Financial.objects.get(user_id_id=int(data['user_id']))
-        if ((amount_check.active1_amount > 0 and amount_check.active1_amount >= int(data['amount_assets']))
-            or (amount_check.active2_amount > 0 and amount_check.active2_amount >= int(data['amount_assets']))
-            or (amount_check.active3_amount > 0 and amount_check.active3_amount >= int(data['amount_assets']))):
-            m = Transactions.objects.create(user_id_id = int(data['user_id']),
+    if ((amount_check.active1_amount > 0 and amount_check.active1_amount >= int(data['amount_assets']))
+        or (amount_check.active2_amount > 0 and amount_check.active2_amount >= int(data['amount_assets']))
+        or (amount_check.active3_amount > 0 and amount_check.active3_amount >= int(data['amount_assets']))):
+        m = Transactions.objects.create(user_id_id = int(data['user_id']),
                                     opening_price = float(data['price']),
                                     amount_assets = int(data['amount_assets']),
                                     operation_type = True,
@@ -324,9 +324,9 @@ def opening_sell():
                                     asset_id = str(data['asset_id']))
                   #get the transaction_id and return it with the average
             #Returning average price
-            m.save()
-            user_balance.save()
-            print("""         _nnnn_                      
+        m.save()
+        user_balance.save()
+        print("""         _nnnn_                      
         dGGGGMMb     ,"""""""""""""".
        @p~qp~~qMb    | Linux Rules! |
        M|@||@\) M|   _;..............'
@@ -342,15 +342,15 @@ def opening_sell():
 _\)      \.___.,|     .'
 \____   \)MMMMMM|   .'
      `-'       `--' hjm""")
-            print(user_balance.balance)
-            print(m.id)
-            transaction = serializers.serialize('json', [ m, ])
-            balance = serializers.serialize('json', [ user_balance, ])
-            Group('chat-'+label).send({'text': transaction })
-            Group('chat-'+label).send({'text': balance })
+        print(user_balance.balance)
+        print(m.id)
+        transaction = serializers.serialize('json', [ m, ])
+        balance = serializers.serialize('json', [ user_balance, ])
+        Group('chat-'+label).send({'text': transaction })
+        Group('chat-'+label).send({'text': balance })
             #average()
-        else:
-            return print('the user does not have enough assets for transaction' )
+    else:
+        return print('the user does not have enough assets for transaction' )
 
 
 def closing_sell():
