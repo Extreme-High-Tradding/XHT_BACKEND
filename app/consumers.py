@@ -30,7 +30,7 @@ def ws_receive(message):
     if(data['operation_type'] == 'False') and (user_balance.balance >= float(data['price'])):
         buy(data=data, user_balance=user_balance, label=label)
     elif(data['operation_type']== 'True') and (data['operation_status'] == 'False'):
-        opening_sell(data=data,label=label)
+        opening_sell(data=data, user_balance= user_balance,label=label)
     elif (data['operation_type']== 'True') and (data['operation_status'] == 'True'):
         closing_sell(data=data, label=label)
 
@@ -299,7 +299,7 @@ _\)      \.___.,|     .'
         #return print('User does not have enough credit or asset does not exist')#raise
 
 
-def opening_sell(data, label):
+def opening_sell(data, user_balance, label):
     amount_check = Financial.objects.get(user_id_id=int(data['user_id']))
     if ((amount_check.active1_amount > 0 and amount_check.active1_amount >= int(data['amount_assets']))
         or (amount_check.active2_amount > 0 and amount_check.active2_amount >= int(data['amount_assets']))
