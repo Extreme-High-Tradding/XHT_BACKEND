@@ -66,7 +66,7 @@ def ws_receive(message):
     #if user does not have enough credit, user can not buy assets
     if(data['operation_type'] == 'False') and (user_balance.balance >= float(data['price'])):
         #creating transaction row
-        m = Transactions.object.create(user_id = user_balance[0],
+        m = Transactions.objects.create(user_id = user_balance[0],
                                     opening_price = float(data['price']),#float()
                                     amount_assets = float(data['amount']),
                                     operation_type = False,
@@ -103,7 +103,7 @@ def ws_receive(message):
     #     if ((amount_check.active1_amount > 0 & amount_check.active1_amount >= data['amount'])
     #         or (amount_check.active2_amount > 0 & amount_check.active2_amount >= data['amount'])
     #         or (amount_check.active3_amount > 0 & amount_check.active3_amount >= data['amount'])) 
-    #         m = Transactions.object.create(user_id = data['user'],
+    #         m = Transactions.objects.create(user_id = data['user'],
     #                                 opening_price = data['price'],
     #                                 amount_assets = data['amount'],
     #                                 operation_type = data['operation_type'],
@@ -119,7 +119,7 @@ def ws_receive(message):
         
     # # Sell function, closed transaction
     # elif (data['operation_type']== True) and (data['operation_status'] == True):
-    #     open_transaction = Transactions.object.get(transaction_id = data['variable for transaction_id']) #check for variable
+    #     open_transaction = Transactions.objects.get(transaction_id = data['variable for transaction_id']) #check for variable
     #     open_transaction.closing_price = data['closing_price']
     #     open_transaction.operation_status = data['operation_status']
     #     #save()
