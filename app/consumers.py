@@ -66,7 +66,7 @@ def ws_receive(message):
     #if user does not have enough credit, user can not buy assets
     if(data['operation_type'] == 'False') and (user_balance.balance >= float(data['price'])):
         #creating transaction row
-        m = Transactions.objects.create(user_id = user_balance[0],
+        m = Transactions.objects.create(user_id = int(data['user_id'],
                                     opening_price = float(data['price']),#float()
                                     amount_assets = float(data['amount']),
                                     operation_type = False,
