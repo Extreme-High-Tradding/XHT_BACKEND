@@ -35,31 +35,31 @@ def ws_receive(message):
     #                                 operation_status = (data['operation_status'] != 'False'))   #data['operation_status'])  False = open , True = 'close'
     # m.save()
     # # till here code 1
-    serialized_obj = serializers.serialize('json', [ m, ])
-    Group('chat-'+label).send({'text': serialized_obj })
+    # serialized_obj = serializers.serialize('json', [ m, ])
+    # Group('chat-'+label).send({'text': serialized_obj })
     
                                        
-"""     #Classifying transaction
-    if m.operation_type == False:
-        Transactions.object.create(user_id = m.user_id, opening_price = m.opening_price,
-                                    amount_assets = m.amount_assets,
-                                    asset_id = m.asset_id)
-        #Modify users balance
-        user_balance = Financial.objects.get(user_id = m.user_id)
-        #try:look for error type and aply try catch function
-        if user_balance.asset_id == 'tesla':
-            user_balance.active1_amount += m.amount_assets
-            user_balance.balance -= m.opening_price
+# """     #Classifying transaction
+#     if m.operation_type == False:
+#         Transactions.object.create(user_id = m.user_id, opening_price = m.opening_price,
+#                                     amount_assets = m.amount_assets,
+#                                     asset_id = m.asset_id)
+#         #Modify users balance
+#         user_balance = Financial.objects.get(user_id = m.user_id)
+#         #try:look for error type and aply try catch function
+#         if user_balance.asset_id == 'tesla':
+#             user_balance.active1_amount += m.amount_assets
+#             user_balance.balance -= m.opening_price
 
-        elif user_balance.asset_id == 'petroleo':
-            user_balance.active2_amount += m.amount_assets
-            user_balance.balance -= m.opening_price
+#         elif user_balance.asset_id == 'petroleo':
+#             user_balance.active2_amount += m.amount_assets
+#             user_balance.balance -= m.opening_price
         
-        elif user_balance.asset_id == 'bitcoin':
-            user_balance.active3_amount += m.amount_assets
-            user_balance.balance -= m.opening_price
-        #Catch: look for error type and aply try catch function
-      """  
+#         elif user_balance.asset_id == 'bitcoin':
+#             user_balance.active3_amount += m.amount_assets
+#             user_balance.balance -= m.opening_price
+#         #Catch: look for error type and aply try catch function
+#       """  
     #code 1 {
     # Buy operation
     user_balance = Financial.objects.get_or_create(user_id_id=int(data['user_id']))# produccion get(user_id=data[user_id])
