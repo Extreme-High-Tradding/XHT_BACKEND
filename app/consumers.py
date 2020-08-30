@@ -28,19 +28,19 @@ def ws_receive(message):
     user_balance = Financial.objects.get(user_id_id=int(data['user_id']))# produccion get(user_id=data[user_id])
     #if user does not have enough credit, user can not buy assets
     if(data['operation_type'] == 'False') and (user_balance.balance >= float(data['price'])):
-        buy(data=data, user_balance=user_balance)
+        buy(data=data, user_balance=user_balance, label=label)
         transaction = serializers.serialize('json', [ m, ])
         balance = serializers.serialize('json', [ user_balance, ])
         Group('chat-'+label).send({'text': transaction })
         Group('chat-'+label).send({'text': balance })
     elif(data['operation_type']== 'True') and (data['operation_status'] == 'False'):
-        opening_sell(data=data)
+        opening_sell(data=data,label=label)
         transaction = serializers.serialize('json', [ m, ])
         balance = serializers.serialize('json', [ user_balance, ])
         Group('chat-'+label).send({'text': transaction })
         Group('chat-'+label).send({'text': balance })
     elif (data['operation_type']== 'True') and (data['operation_status'] == 'True'):
-        closing_sell(data=data)
+        closing_sell(data=data, label=label)
         transaction = serializers.serialize('json', [ open_transaction, ])
         balance = serializers.serialize('json', [ user_balance, ])
         Group('chat-'+label).send({'text': transaction })
@@ -264,7 +264,7 @@ def average(asset_id):
                                             operation_type = True)
 
 
-def buy(data, user_balance):
+def buy(data, user_balance, label):
     m = Transactions.objects.create(user_id_id = int(data['user_id']),
                                     opening_price = float(data['price']),#float()
                                     amount_assets = int(data['amount_assets']),
@@ -311,7 +311,7 @@ _\)      \.___.,|     .'
         #return print('User does not have enough credit or asset does not exist')#raise
 
 
-def opening_sell(data):
+def opening_sell(data, label):
     amount_check = Financial.objects.get(user_id_id=int(data['user_id']))
     if ((amount_check.active1_amount > 0 and amount_check.active1_amount >= int(data['amount_assets']))
         or (amount_check.active2_amount > 0 and amount_check.active2_amount >= int(data['amount_assets']))
@@ -353,7 +353,7 @@ _\)      \.___.,|     .'
         return print('the user does not have enough assets for transaction' )
 
 
-def closing_sell(data):
+def closing_sell(data, label):
         # Sell function, closed transaction
         #check for variable¡¡¡¡¡¡IMPORTANTE!!!!temporal para pruebas id=41 o 40
     open_transaction = Transactions.objects.get(id = 45)
