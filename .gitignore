@@ -15,3 +15,5 @@ venv/include
 .venv/pyvenv.cfg 
 .venv/share
 .venv/*
+.virualenv/*
+.vscode/*
