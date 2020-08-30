@@ -74,17 +74,17 @@ def ws_receive(message):
         m.save()
         #Modify users balance
         #try:look for error type and aply try catch function
-        if '1' == data['asset']:
-            user_balance[5] += float(data['amount'])
-            user_balance[1] -= float(data['price'])
+        if '1' == data['asset_id']:
+            user_balance.active1_amount += int(data['amount_assets'])
+            user_balance.balance -= float(data['price'])
 
-        elif '2' == data['asset']:
-            user_balance[6] += float(data['amount'])
-            user_balance[1] -= float(data['price'])
+        elif '2' == data['asset_id']:
+            user_balance.active2_amount += int(data['amount_assets'])
+            user_balance.balance -= float(data['price'])
         
-        elif '3' == data['asset']:
-            user_balance[7] += float(data['amount'])
-            user_balance[1] -= float(data['price'])
+        elif '3' == data['asset_id']:
+            user_balance.active3_amount += int(data['amount_assets'])
+            user_balance.balance -= float(data['price'])
         #m.save()
     else:
         return print('User does not have enough credit or asset does not exist')#raise
