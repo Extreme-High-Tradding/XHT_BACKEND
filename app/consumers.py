@@ -62,7 +62,7 @@ def ws_receive(message):
 #         #Catch: look for error type and aply try catch function
 #       """  
     #code 1 {
-    # Buy operation
+    # Buy operation ¡¡¡¡¡¡¡¡¡¡¡¡¡¡Works 100%!!!!!!!!!!!!!!!!!!
     user_balance = Financial.objects.get(user_id_id=int(data['user_id']))# produccion get(user_id=data[user_id])
     #if user does not have enough credit, user can not buy assets
     if(data['operation_type'] == 'False') and (user_balance.balance >= float(data['price'])):
@@ -88,14 +88,11 @@ def ws_receive(message):
             user_balance.balance -= Decimal(data['price'])
 
         user_balance.save()
-        print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        print(user_balance.balance)
-        print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         transaction = serializers.serialize('json', [ m, ])
         balance = serializers.serialize('json', [ user_balance, ])
         Group('chat-'+label).send({'text': transaction })
         Group('chat-'+label).send({'text': balance })
-    
+        #¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡works 1000%!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         #return print('User does not have enough credit or asset does not exist')#raise
 
 
@@ -134,8 +131,7 @@ def ws_receive(message):
 _\)      \.___.,|     .'
 \____   \)MMMMMM|   .'
      `-'       `--' hjm""")
-            print(m)
-            print(Transactions.objects.all())
+            print(m.id)
             user_balance.save()
             transaction = serializers.serialize('json', [ m, ])
             balance = serializers.serialize('json', [ user_balance, ])
