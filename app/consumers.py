@@ -70,7 +70,7 @@ def ws_receive(message):
                                     opening_price = float(data['price']),#float()
                                     amount_assets = int(data['amount_assets']),
                                     operation_type = False,
-                                    asset_id = data['asset_id'])
+                                    asset_id = str(data['asset_id']))
         m.save()
         #Modify users balance
         #try:look for error type and aply try catch function
