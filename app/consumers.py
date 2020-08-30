@@ -82,45 +82,11 @@ def ws_receive(message):
         elif '2' == data['asset_id']:
             user_balance.active2_amount += int(data['amount_assets'])
             user_balance.balance -= Decimal(data['price'])
-            print("""         _nnnn_                      
-        dGGGGMMb     ,"""""""""""""".
-       @p~qp~~qMb    | Linux Rules! |
-       M|@||@\) M|   _;..............'
-       @,----.JM| -'
-      JS^\__/  qKL
-     dZP        qKRb
-    dZP          qKKb
-   fZP            SMMb
-   HZM            MMMM
-   FqM            MMMM
- __| ".        |\dS"qML
- |    `.       | `' \Zq
-_\)      \.___.,|     .'
-\____   \)MMMMMM|   .'
-     `-'       `--' hjm""")
-            print(user_balance.balance)
         
         elif '3' == data['asset_id']:
             user_balance.active3_amount += int(data['amount_assets'])
             user_balance.balance -= Decimal(data['price'])
-            print("""         _nnnn_                      
-        dGGGGMMb     ,"""""""""""""".
-       @p~qp~~qMb    | Linux Rules! |
-       M|@||@\) M|   _;..............'
-       @,----.JM| -'
-      JS^\__/  qKL
-     dZP        qKRb
-    dZP          qKKb
-   fZP            SMMb
-   HZM            MMMM
-   FqM            MMMM
- __| ".        |\dS"qML
- |    `.       | `' \Zq
-_\)      \.___.,|     .'
-\____   \)MMMMMM|   .'
-     `-'       `--' hjm""")
-            print(user_balance.balance)
-            
+
         user_balance.save()
     else:
         return print('User does not have enough credit or asset does not exist')#raise
@@ -129,6 +95,24 @@ _\)      \.___.,|     .'
     balance = serializers.serialize('json', [ user_balance, ])
     Group('chat-'+label).send({'text': transaction })
     Group('chat-'+label).send({'text': balance })
+
+    print("""         _nnnn_                      
+        dGGGGMMb     ,"""""""""""""".
+       @p~qp~~qMb    | Linux Rules! |
+       M|@||@\) M|   _;..............'
+       @,----.JM| -'
+      JS^\__/  qKL
+     dZP        qKRb
+    dZP          qKKb
+   fZP            SMMb
+   HZM            MMMM
+   FqM            MMMM
+ __| ".        |\dS"qML
+ |    `.       | `' \Zq
+_\)      \.___.,|     .'
+\____   \)MMMMMM|   .'
+     `-'       `--' hjm""")
+    print(user_balance.balance)
 
     # # Sell function, open transaction
     # #if user does not have enough assets, user can not open a sell movement. with the following lines
