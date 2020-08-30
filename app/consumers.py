@@ -93,15 +93,14 @@ def ws_receive(message):
         Group('chat-'+label).send({'text': transaction })
         Group('chat-'+label).send({'text': balance })
     
-    else:
-        return print('User does not have enough credit or asset does not exist')#raise
+        #return print('User does not have enough credit or asset does not exist')#raise
 
 
 
     # Sell function, open transaction
     #if user does not have enough assets, user can not open a sell movement. with the following lines
     #we avoid than user sell assets before of buy enough
-    elif (data['operation_type']== 'True') and (data['operation_status'] == 'False'):
+    elif(data['operation_type']== 'True') and (data['operation_status'] == 'False'):
         #creating transaction row
         amount_check = Financial.objects.get(user_id_id=int(data['user_id']))
         if ((amount_check.active1_amount > 0 and amount_check.active1_amount >= int(data['amount_assets']))
@@ -133,9 +132,13 @@ _\)      \.___.,|     .'
 \____   \)MMMMMM|   .'
      `-'       `--' hjm""")
             print(m.transaction_id)
+            user_balance.save()
+            transaction = serializers.serialize('json', [ m, ])
+            balance = serializers.serialize('json', [ user_balance, ])
+            Group('chat-'+label).send({'text': transaction })
+            Group('chat-'+label).send({'text': balance })
             #average()
-        else:
-            return print('the user does not have enough assets for transaction' )
+            #return print('the user does not have enough assets for transaction' )
 
         
     # # Sell function, closed transaction
