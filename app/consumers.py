@@ -134,7 +134,8 @@ def ws_receive(message):
 _\)      \.___.,|     .'
 \____   \)MMMMMM|   .'
      `-'       `--' hjm""")
-            print(m.transaction_id)
+            print(m)
+            print(tablas = Transactions.objects.all())
             user_balance.save()
             transaction = serializers.serialize('json', [ m, ])
             balance = serializers.serialize('json', [ user_balance, ])
