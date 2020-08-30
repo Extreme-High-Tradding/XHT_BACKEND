@@ -270,23 +270,23 @@ def buy():
                                     amount_assets = int(data['amount_assets']),
                                     operation_type = False,
                                     asset_id = str(data['asset_id']))
-        m.save()
+    m.save()
         #Modify users balance
         #try:look for error type and aply try catch function
-        if '1' == data['asset_id']:
-            user_balance.active1_amount += int(data['amount_assets'])
-            user_balance.balance -= Decimal(data['price'])
+    if '1' == data['asset_id']:
+        user_balance.active1_amount += int(data['amount_assets'])
+        user_balance.balance -= Decimal(data['price'])
 
-        elif '2' == data['asset_id']:
-            user_balance.active2_amount += int(data['amount_assets'])
-            user_balance.balance -= Decimal(data['price'])
+    elif '2' == data['asset_id']:
+        user_balance.active2_amount += int(data['amount_assets'])
+        user_balance.balance -= Decimal(data['price'])
         
-        elif '3' == data['asset_id']:
-            user_balance.active3_amount += int(data['amount_assets'])
-            user_balance.balance -= Decimal(data['price'])
+    elif '3' == data['asset_id']:
+        user_balance.active3_amount += int(data['amount_assets'])
+        user_balance.balance -= Decimal(data['price'])
 
-        user_balance.save()
-        print("""         _nnnn_                      
+    user_balance.save()
+    print("""         _nnnn_                      
         dGGGGMMb     ,"""""""""""""".
        @p~qp~~qMb    | Linux Rules! |
        M|@||@\) M|   _;..............'
@@ -302,11 +302,11 @@ def buy():
 _\)      \.___.,|     .'
 \____   \)MMMMMM|   .'
      `-'       `--' hjm""")
-        print(user_balance.balance)
-        transaction = serializers.serialize('json', [ m, ])
-        balance = serializers.serialize('json', [ user_balance, ])
-        Group('chat-'+label).send({'text': transaction })
-        Group('chat-'+label).send({'text': balance })
+    print(user_balance.balance)
+    transaction = serializers.serialize('json', [ m, ])
+    balance = serializers.serialize('json', [ user_balance, ])
+    Group('chat-'+label).send({'text': transaction })
+    Group('chat-'+label).send({'text': balance })
         #¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡works 1000%!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         #return print('User does not have enough credit or asset does not exist')#raise
 
