@@ -104,8 +104,8 @@ def ws_receive(message):
         #creating transaction row
         amount_check = Financial.objects.get(user_id_id=int(data['user_id']))
         if ((amount_check.active1_amount > 0 and amount_check.active1_amount >= int(data['amount_assets']))
-            or (amount_check.active2_amount > 0 & amount_check.active2_amount >= int(data['amount_assets']))
-            or (amount_check.active3_amount > 0 & amount_check.active3_amount >= int(data['amount_assets']))) 
+            or (amount_check.active2_amount > 0 and amount_check.active2_amount >= int(data['amount_assets']))
+            or (amount_check.active3_amount > 0 and amount_check.active3_amount >= int(data['amount_assets']))) 
             m = Transactions.objects.create(user_id_id = int(data['user_id']),
                                     opening_price = float(data['price']),
                                     amount_assets = int(data['amount']),
