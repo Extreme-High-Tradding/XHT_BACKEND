@@ -344,7 +344,7 @@ _\)      \.___.,|     .'
 def closing_sell(data, label):
         # Sell function, closed transaction
         #check for variable¡¡¡¡¡¡IMPORTANTE!!!!temporal para pruebas id=41 o 40
-    open_transaction = Transactions.objects.get(id = 45)
+    open_transaction = Transactions.objects.get(id = 51)
         #check for variable¡¡¡¡¡¡IMPORTANT!!!!temporal para pruebas id=41 o 40
         #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         #check for variable ¡¡¡¡¡IMPORTANT!!!!!data['closing_price '] 
