@@ -68,7 +68,7 @@ def ws_receive(message):
         #creating transaction row
         m = Transactions.objects.create(user_id = int(data['user_id']),
                                     opening_price = float(data['price']),#float()
-                                    amount_assets = float(data['amount']),
+                                    amount_assets = int(data['amount']),
                                     operation_type = False,
                                     asset_id = data['asset'])
         m.save()
