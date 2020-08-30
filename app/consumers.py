@@ -146,8 +146,15 @@ _\)      \.___.,|     .'
     elif (data['operation_type']== 'True') and (data['operation_status'] == 'True'):
         #check for variable¡¡¡¡¡¡IMPORTANTE!!!!temporal para pruebas id=41 o 40
         open_transaction = Transactions.objects.get(id = 41)
-        #check for variable¡¡¡¡¡¡IMPORTANTE!!!!temporal para pruebas id=41 o 40
-        open_transaction.closing_price = Decimal(data['closing_price'])
+        #check for variable¡¡¡¡¡¡IMPORTANT!!!!temporal para pruebas id=41 o 40
+        #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        #check for variable ¡¡¡¡¡IMPORTANT!!!!!data['closing_price '] 
+        # I am changing this  ------> Decimal(data['closing_price']) correct
+        # for this Decimal(100) to test  
+        open_transaction.closing_price = Decimal(100)
+        #check for variable ¡¡¡¡¡IMPORTANT!!!!!data['closing_price '] 
+        # I am changing this  ------> Decimal(data['closing_price']) correct
+        # for this Decimal(100) to test
         open_transaction.operation_status = True
         #save()
         #Modify users balance
@@ -155,20 +162,25 @@ _\)      \.___.,|     .'
         #try:look for error type and aply try catch function
         if '1' == open_transaction.asset_id:
             user_balance.active1_amount -= open_transaction.amount_assets
-            user_balance.balance += data['closing_price']
+            user_balance.balance += Decimal(100)
 
         elif '2' == open_transaction.asset_id:
             user_balance.active2_amount -= open_transaction.amount_assets
-            user_balance.balance += data['closing_price']
+            user_balance.balance += Decimal(100)
         
         elif '3' == open_transaction.asset_id:
             user_balance.active3_amount -= open_transaction.amount_assets
-            user_balance.balance += data['closing_price']
+            user_balance.balance += Decimal(100)
 
-        m.save()
+        open_transaction.save()
+        user_balance.save()
         #average()
         # en lugar de return raise
         #raise #leyenda del error 
+        transaction = serializers.serialize('json', [ m, ])
+        balance = serializers.serialize('json', [ user_balance, ])
+        Group('chat-'+label).send({'text': transaction })
+        Group('chat-'+label).send({'text': balance })
         #Catch: look for error type and aply try catch function 
     # #code 1   }
 
