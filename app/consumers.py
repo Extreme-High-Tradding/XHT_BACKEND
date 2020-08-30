@@ -350,7 +350,7 @@ def closing_sell(data, label):
         #check for variable ¡¡¡¡¡IMPORTANT!!!!!data['closing_price '] 
         # I am changing this  ------> Decimal(data['closing_price']) correct
         # for this Decimal(100) to test  
-    open_transaction.closing_price = Decimal(100)
+    open_transaction.closing_price = Decimal(500)
         #check for variable ¡¡¡¡¡IMPORTANT!!!!!data['closing_price '] 
         # I am changing this  ------> Decimal(data['closing_price']) correct
         # for this Decimal(100) to test
