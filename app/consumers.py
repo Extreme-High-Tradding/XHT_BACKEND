@@ -23,23 +23,6 @@ def ws_receive(message):
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
-    print("""         _nnnn_                      
-        dGGGGMMb     ,"""""""""""""".
-       @p~qp~~qMb    | Linux Rules! |
-       M|@||@\) M|   _;..............'
-       @,----.JM| -'
-      JS^\__/  qKL
-     dZP        qKRb
-    dZP          qKKb
-   fZP            SMMb
-   HZM            MMMM
-   FqM            MMMM
- __| ".        |\dS"qML
- |    `.       | `' \Zq
-_\)      \.___.,|     .'
-\____   \)MMMMMM|   .'
-     `-'       `--' hjm""")
-    print(data)
     # # user_striped = data['user'].strip("'")
     # #here goes code 1
     # user = Financial.objects.get_or_create(user_id_id=int(data['user_id']))
@@ -145,7 +128,7 @@ _\)      \.___.,|     .'
     # Sell function, closed transaction
     elif (data['operation_type']== 'True') and (data['operation_status'] == 'True'):
         #check for variable¡¡¡¡¡¡IMPORTANTE!!!!temporal para pruebas id=41 o 40
-        open_transaction = Transactions.objects.get(id = 41)
+        open_transaction = Transactions.objects.get(id = 40)
         #check for variable¡¡¡¡¡¡IMPORTANT!!!!temporal para pruebas id=41 o 40
         #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         #check for variable ¡¡¡¡¡IMPORTANT!!!!!data['closing_price '] 
@@ -177,7 +160,7 @@ _\)      \.___.,|     .'
         #average()
         # en lugar de return raise
         #raise #leyenda del error 
-        transaction = serializers.serialize('json', [ m, ])
+        transaction = serializers.serialize('json', [ open_transaction, ])
         balance = serializers.serialize('json', [ user_balance, ])
         Group('chat-'+label).send({'text': transaction })
         Group('chat-'+label).send({'text': balance })
