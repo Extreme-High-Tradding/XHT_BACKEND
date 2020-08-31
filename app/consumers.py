@@ -249,7 +249,7 @@ def ws_disconnect(message):
 
 #Additional functions
 def active_transactions(user_id):
-    m = Transactions.objects.filter(user_id_id= user_id).filter(operation_type = True).filter(operation_status= False)
+    m = Transactions.objects.filter(user_id_id= user_id).filter(operation_type = True, operation_status= False)
     transaction = serializers.serialize('json', [ m, ])
     Group('chat-'+label).send({'text': transaction })
 
