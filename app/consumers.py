@@ -251,7 +251,7 @@ def ws_disconnect(message):
 def average(id_user,id_asset, status_operation, type_operation):
     if((type_operation == False) or (type_operation == 'False')):
         #buy average
-        for p in Transactions.objects.raw('SELECT app_transactions.opening_price FROM app_transactions WHERE app_transactions.operation_type = False AND app_transactions.user_id_id = id_user AND app_transactions.asset_id= id_asset;'):
+        for p in Transactions.objects.raw('SELECT app_transactions.opening_price FROM app_transactions WHERE app_transactions.operation_type = False AND app_transactions.user_id = id_user AND app_transactions.asset_id= id_asset;'):
             print(p)
     elif((operation_type == True) or (operation_type == 'True')) and ((operation_status == False) or (operation_status == 'False')):
         #opening_sell average
@@ -303,7 +303,7 @@ _\)      \.___.,|     .'
 \____   \)MMMMMM|   .'
      `-'       `--' hjm""")
     print(user_balance.balance)
-    average(id_user= m.user_id_id, id_asset= m.asset_id, status_operation= m.operation_status, type_operation= m.operation_type)
+    average(id_user= m.user_id, id_asset= m.asset_id, status_operation= m.operation_status, type_operation= m.operation_type)
     transaction = serializers.serialize('json', [ m, ])
     balance = serializers.serialize('json', [ user_balance, ])
     Group('chat-'+label).send({'text': transaction })
