@@ -314,7 +314,7 @@ _\)      \.___.,|     .'
 \____   \)MMMMMM|   .'
      `-'       `--' hjm""")
     print(user_balance.balance)
-    #average(user= m.user_id_id, asset= m.asset_id, status_operation= m.operation_status, type_operation= m.operation_type)
+    average(user= m.user_id_id, asset= m.asset_id, status_operation= m.operation_status, type_operation= m.operation_type)
     transaction = serializers.serialize('json', [ m, ])
     balance = serializers.serialize('json', [ user_balance, ])
     Group('chat-'+label).send({'text': transaction })
