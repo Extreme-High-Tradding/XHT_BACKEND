@@ -23,7 +23,7 @@ def ws_receive(message):
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     data = json.loads(message['text'])
-    active_transactions(int(data['user_id']))# manda las transacciones abiertas al usuario
+    #active_transactions(int(data['user_id']))# manda las transacciones abiertas al usuario
 
     user_balance = Financial.objects.get(user_id_id=int(data['user_id']))# produccion get(user_id=data[user_id])
     #if user does not have enough credit, user can not buy assets
@@ -314,7 +314,7 @@ _\)      \.___.,|     .'
 \____   \)MMMMMM|   .'
      `-'       `--' hjm""")
     print(user_balance.balance)
-    average(user= m.user_id_id, asset= m.asset_id, status_operation= m.operation_status, type_operation= m.operation_type)
+    #average(user= m.user_id_id, asset= m.asset_id, status_operation= m.operation_status, type_operation= m.operation_type)
     transaction = serializers.serialize('json', [ m, ])
     balance = serializers.serialize('json', [ user_balance, ])
     Group('chat-'+label).send({'text': transaction })
