@@ -16,6 +16,9 @@ def ws_connect(message):
     label = 'testroom'
     room = Room.objects.get(label='testroom')
     Group('chat-' + label).add(message.reply_channel)
+    user_balance = Financial.objects.get(user_id_id=1)
+    balance = serializers.serialize('json', [ user_balance, ])
+    Group('chat-'+ label).send({'text': balance })
     message.channel_session['room'] = 'testroom'
 
 @channel_session
