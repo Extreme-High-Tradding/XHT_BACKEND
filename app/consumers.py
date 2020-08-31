@@ -255,8 +255,8 @@ def average(user, asset, status_operation, type_operation):
         SELECT avg(app_transactions.opening_price) 
         FROM app_transactions 
         WHERE app_transactions.operation_type = False 
-        AND app_transactions.asset_id= %s
-        AND app_transactions.user_id_id = %s;""", asset, user):
+        AND app_transactions.asset_id= '%s'
+        AND app_transactions.user_id_id = '%s';""", asset, user):
             print(p)
     elif((operation_type == True) or (operation_type == 'True')) and ((operation_status == False) or (operation_status == 'False')):
         #opening_sell average
